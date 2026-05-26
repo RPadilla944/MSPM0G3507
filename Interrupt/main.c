@@ -1,7 +1,7 @@
 #include "ti/devices/msp/m0p/mspm0g350x.h"
 #include "ti/driverlib/dl_common.h" // For DL_Common_delayCycles function
 #include "stdio.h"
-int x=0;
+
 int main(void)
 { 
   // SET PINS
@@ -29,9 +29,7 @@ int main(void)
     while (1)
     {     
       GPIOA->DOUT31_0 |= (1 << 8); // LED ON
-      printf("%d\n",x);
-        x++;
-        DL_Common_delayCycles(40000000); // 1/2 sec
+      DL_Common_delayCycles(40000000); // 1/2 sec
     }
 }
 void GROUP1_IRQHandler(void)
