@@ -1,0 +1,31 @@
+#include "ti/devices/msp/m0p/mspm0g350x.h"
+#include "ti/driverlib/dl_common.h" // For DL_Common_delayCycles function
+
+int main(void)
+{
+
+//Reset all pins in GPIOB
+    GPIOB->GPRCM.RSTCTL = (0xB1 << 24) | (1 << 1) | (1 << 0); // Unlock and Write, Assert reset, Clear reset 				
+    GPIOB->GPRCM.PWREN = (0x26 << 24) | (1 << 0); //Enable internal Resistor
+    DL_Common_delayCycles(24);
+
+// LED PB20
+    IOMUX->SECCFG.PINCM[47] = (1<<7) | (1<<0); // Enable, Set
+    GPIOB->DOE31_0 |= (1 << 20);  // Set as output
+
+//Button PB12
+    IOMUX->SECCFG.PINCM[28] = (5 << 16) | (1 << 7)  |  (1 << 0); // Pulldown, enable, set
+
+    while (1)
+    {
+        if (!(GPIOB->DIN31_0 & (1 << 12)))
+        {
+         GPIOB->DOUT31_0 &= ~(1 << 20); //turn LED on
+        }
+        else
+        {
+         GPIOB->DOUT31_0 |= (1 << 20); //turn LED off
+        }
+    }
+
+}
