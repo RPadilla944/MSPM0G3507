@@ -33,7 +33,7 @@ int main(void)
     
     while (1) 
     {        
-        LCD_Print("Gob is balding!", 0, 0);
+        LCD_Print("Hello!", 0, 0);
         delay(1000);
     }
 }
