@@ -40,11 +40,6 @@ void LCD_Initialize(void)
     {
         LCD_CMD(status_LCD[i]);
     }
-    // LCDWriteCMD(0x28); //4-bit, 2 line, 5x8
-    // LCDWriteCMD(0x08); // Instruction Flow
-    // LCDWriteCMD(0x01); // Clear LCD
-    // LCDWriteCMD(0x06); // Auto-Increment
-    // LCDWriteCMD(0x0C); // Display, No Blink
  
 }
 
